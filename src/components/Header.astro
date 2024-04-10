@@ -1,6 +1,7 @@
 ---
 import { Counter } from "./Counter";
 import HeaderButton from "./HeaderButton.astro";
+const BASE_URL = import.meta.env.BASE_URL;
 ---
 
 <header class="py-8 px-4 mx-auto max-w-xl lg:py-16 lg:px-6">
@@ -23,7 +24,7 @@ import HeaderButton from "./HeaderButton.astro";
   <nav
     class="flex flex-col items-center justify-between w-full text-center md:flex-row"
   >
-    <HeaderButton href="/">
+    <HeaderButton href=`${BASE_URL}`>
       <svg
         slot="before"
         width="24"
@@ -45,7 +46,7 @@ import HeaderButton from "./HeaderButton.astro";
       </svg>
       Últimos lanzamientos
     </HeaderButton>
-    <HeaderButton href="/about">
+    <HeaderButton href=`${BASE_URL}/about`>
       <svg
         slot="before"
         width="24"
@@ -64,7 +65,7 @@ import HeaderButton from "./HeaderButton.astro";
       </svg>
       Sobre el proyecto
     </HeaderButton>
-    <HeaderButton href="/oldest">
+    <HeaderButton href=`${BASE_URL}/oldest`>
       <svg
         slot="before"
         width="24"
