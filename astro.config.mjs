@@ -10,6 +10,7 @@ import preact from "@astrojs/preact";
 // https://astro.build/config
 export default defineConfig({
   site: 'https://peterdotdev.github.io',
+  base: 'astro-first',
   integrations: [tailwind(), preact()],
   // output: 'hybrid' // server, hybrid o static (nada)
 });
