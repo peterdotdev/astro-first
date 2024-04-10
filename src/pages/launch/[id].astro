@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import { getLaunchById } from "../../services/spacex";
+import { getLatestLaunches, getLaunchById } from "../../services/spacex";
 
 // en astro.config.mjs podemos establecer el tipo de renderizado
 // por defecto hace un pre-renderizado, x lo tanto, las url dinamicas como estas [id]
@@ -18,7 +18,7 @@ import { getLaunchById } from "../../services/spacex";
 // cosas donde astro brilla, no toques nada, pone getStaticPaths y listo
 // pero si puntualmente necesitas hacer un SSR xq es necesario bueno hacelo
 
-export const prerender = false; // server
+// export const prerender = false; // server
 // una vez usas server en vez de pre-render
 // podes manejar las cosas asi:
 
@@ -38,17 +38,17 @@ if (id) {
   launch = await getLaunchById({ id });
 }
 
-// export async function getStaticPaths() {
-//   // llamar a una api externa
-//   // para saber todas las ids que debes generar
-//   // cuando sabes el numero y va a ser finito determinado
-//   // sino tenes que usar SSR
-//   const launches = await getLatestLaunches();
+export async function getStaticPaths() {
+  // llamar a una api externa
+  // para saber todas las ids que debes generar
+  // cuando sabes el numero y va a ser finito determinado
+  // sino tenes que usar SSR
+  const launches = await getLatestLaunches();
 
-//   return launches.map((launch) => ({
-//     params: { id: launch.id },
-//   }));
-// }
+  return launches.map((launch) => ({
+    params: { id: launch.id },
+  }));
+}
 ---
 
 <Layout title=`Lanzamiento ${id}`>
