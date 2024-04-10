@@ -32,16 +32,13 @@ jobs:
           name: github-pages
           path: path/to/your/build/directory
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
+      deploy:
+        needs: build
+        runs-on: ubuntu-latest
+        environment:
           name: github-pages
-          path: path/to/your/download/directory
-      # Additional steps for deploying the artifact to GitHub Pages
+          url: ${{ steps.deployment.outputs.page_url }}
+        steps:
+          - name: Deploy to GitHub Pages
+            id: deployment
+            uses: actions/deploy-pages@v4
